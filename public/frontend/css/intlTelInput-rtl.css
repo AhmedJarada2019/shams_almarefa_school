@@ -1,0 +1,16 @@
+html[dir="rtl"] .iti__selected-flag {
+    padding: 0 8px 0 6px;
+}
+
+html[dir="rtl"] .iti__arrow {
+    margin-left: unset;
+    margin-right: 6px;
+}
+
+html[dir="rtl"] .iti__country-list {
+    left: 0;
+}
+
+html[dir="rtl"] .iti__country {
+    direction: ltr;
+}

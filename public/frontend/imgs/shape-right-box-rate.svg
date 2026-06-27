@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="302.612" height="470.235" viewBox="0 0 302.612 470.235">
+  <g id="Group_53719" data-name="Group 53719" transform="translate(-1048 -2473.765)">
+    <path id="Vector_3" data-name="Vector 3" d="M0,125C3.552,92.336,17.457,37.186,44.657,77.9c34,50.9,31.716-21.27,30.955-53.174,0,1.9-3.3-69.886,43.388,22.789" transform="translate(1334.873 2613.402) rotate(-174.433)" fill="none" stroke="#ffc27a" stroke-linecap="round" stroke-linejoin="round" stroke-width="6"/>
+    <g id="StarFour" transform="matrix(0.976, -0.216, 0.216, 0.976, 1048, 2546.328)">
+      <rect id="StarFour-2" data-name="StarFour" width="27.699" height="27.699" fill="none"/>
+      <path id="Vector" d="M0,0H27.7V27.7H0Z" fill="none"/>
+      <path id="Vector-2" data-name="Vector" d="M12.969,13.429l-2.225,6.119a.767.767,0,0,1-1.439,0L7.08,13.429a.777.777,0,0,0-.46-.46L.5,10.743A.767.767,0,0,1,.5,9.3L6.619,7.08a.777.777,0,0,0,.46-.46L9.3.5a.767.767,0,0,1,1.439,0l2.225,6.119a.777.777,0,0,0,.46.46L19.548,9.3a.767.767,0,0,1,0,1.439l-6.119,2.225a.777.777,0,0,0-.46.46Z" transform="translate(3.825 3.825)" fill="#1163f4"/>
+    </g>
+    <circle id="Ellipse_561" data-name="Ellipse 561" cx="9.5" cy="9.5" r="9.5" transform="translate(1216 2925)" fill="#00c48c"/>
+  </g>
+</svg>

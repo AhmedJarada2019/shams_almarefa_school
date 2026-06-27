@@ -1,0 +1,145 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css');
+
+/**
+ * تنسيقات مخصصة للسايدبار — مدرسة شمس المعرفة
+ * توثيق الألوان والهوية (3.6):
+ * - العنصر النشط: #2E7D32 → #1B5E20 (تدرج أفقي)، نص أبيض.
+ * - الأيقونات غير النشطة: أبيض شفاف rgba(255,255,255,0.82).
+ * - ألوان مميزة للأيقونات: primary #4CAF50, success #81C784, warning #FFB74D, info #4FC3F7, danger #E57373.
+ */
+.menu-item-active .menu-link {
+    background: linear-gradient(90deg, #2E7D32 0%, #1B5E20 100%) !important;
+    color: #ffffff !important;
+}
+
+/* لون الأيقونات الافتراضي (غير النشط) — أبيض شفاف على الخلفية الداكنة */
+.menu-icon svg,
+.menu-icon i,
+.menu-icon {
+    color: rgba(255, 255, 255, 0.82) !important;
+}
+
+.menu-icon svg path,
+.menu-icon svg rect,
+.menu-icon svg polygon,
+.menu-icon svg circle {
+    fill: rgba(255, 255, 255, 0.82) !important;
+}
+
+/* ألوان مميزة لكل نوع أيقونة (غير النشط) */
+.menu-icon .text-primary {
+    color: #4CAF50 !important;
+}
+
+.menu-icon .text-success {
+    color: #81C784 !important;
+}
+
+.menu-icon .text-warning {
+    color: #FFB74D !important;
+}
+
+.menu-icon .text-info {
+    color: #4FC3F7 !important;
+}
+
+.menu-icon .text-danger {
+    color: #E57373 !important;
+}
+
+/* عناصر SVG داخل الأيقونات الملونة */
+.menu-icon .text-primary svg path,
+.menu-icon .text-primary svg rect,
+.menu-icon .text-primary svg polygon,
+.menu-icon .text-primary svg circle { fill: #4CAF50 !important; }
+.menu-icon .text-success svg path,
+.menu-icon .text-success svg rect,
+.menu-icon .text-success svg polygon,
+.menu-icon .text-success svg circle { fill: #81C784 !important; }
+.menu-icon .text-warning svg path,
+.menu-icon .text-warning svg rect,
+.menu-icon .text-warning svg polygon,
+.menu-icon .text-warning svg circle { fill: #FFB74D !important; }
+.menu-icon .text-info svg path,
+.menu-icon .text-info svg rect,
+.menu-icon .text-info svg polygon,
+.menu-icon .text-info svg circle { fill: #4FC3F7 !important; }
+.menu-icon .text-danger svg path,
+.menu-icon .text-danger svg rect,
+.menu-icon .text-danger svg polygon,
+.menu-icon .text-danger svg circle { fill: #E57373 !important; }
+
+/* أيقونات flaticon (الحرف، الهندسة) — نفس الألوان المميزة وعند النشاط أبيض */
+.menu-item-active .flaticon-tools,
+.menu-item-active .flaticon2-architecture {
+    color: #ffffff !important;
+}
+
+/* حل بديل للأيقونات - استخدام FontAwesome كبديل */
+.flaticon-tools::before {
+    content: "\f0ad" !important;
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
+}
+
+.flaticon2-architecture::before {
+    content: "\f1ad" !important;
+    font-family: "Font Awesome 5 Free" !important;
+    font-weight: 900 !important;
+}
+
+/* عند التمرير — إضاءة خفيفة للأيقونة */
+.menu-link:hover .menu-icon,
+.menu-link:hover .menu-icon i,
+.menu-link:hover .menu-icon svg path,
+.menu-link:hover .menu-icon svg rect,
+.menu-link:hover .menu-icon svg polygon,
+.menu-link:hover .menu-icon svg circle {
+    color: #ffffff !important;
+    fill: #ffffff !important;
+}
+
+/* تنسيقات للأيقونات النشطة — أبيض دائماً */
+.menu-item-active .menu-icon svg,
+.menu-item-active .menu-icon i,
+.menu-item-active .menu-icon,
+.menu-item-active .menu-icon .text-primary,
+.menu-item-active .menu-icon .text-success,
+.menu-item-active .menu-icon .text-warning,
+.menu-item-active .menu-icon .text-info,
+.menu-item-active .menu-icon .text-danger {
+    color: #ffffff !important;
+}
+
+.menu-item-active .menu-icon svg path,
+.menu-item-active .menu-icon svg rect,
+.menu-item-active .menu-icon svg polygon,
+.menu-item-active .menu-icon svg circle {
+    fill: #ffffff !important;
+}
+
+/* ===== 3.2 تقليل التمرير: قائمة السايدبار قابلة للتمرير بالماوس ===== */
+/* التمرير على الحاوية (الـ wrapper) وليس على ul لضمان عمل عجلة الماوس */
+#kt_aside_menu_wrapper.aside-menu-wrapper {
+    max-height: fit-content;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+}
+#kt_aside_menu_wrapper.aside-menu-wrapper::-webkit-scrollbar {
+    width: 6px;
+}
+#kt_aside_menu_wrapper.aside-menu-wrapper::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 3px;
+}
+#kt_aside_menu_wrapper.aside-menu-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 3px;
+}
+#kt_aside_menu_wrapper.aside-menu-wrapper::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.4);
+}
+

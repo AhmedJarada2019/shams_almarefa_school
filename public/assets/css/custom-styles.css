@@ -1,0 +1,658 @@
+/* Custom Styles for Jabalia Municipality Admin Dashboard */
+
+/* ===== 3.1 هيكل الصفحة: حد أقصى لعرض المحتوى على الشاشات الكبيرة ===== */
+.content-max-width-wrapper {
+    width: 100%;
+    max-width: 1600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== 3.4 النماذج: تنسيق أعمدة النماذج (استخدام class بدل inline) ===== */
+.form-col-padding,
+.form-row .col-md-6.form-col-padding,
+.form-row .col-12.form-col-padding {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+:root {
+    --primary-color: #2E7D32;
+    --primary-light: #4CAF50;
+    --primary-dark: #1B5E20;
+    --success-color: #1BC5BD;
+    --warning-color: #FFA800;
+    --danger-color: #F64E60;
+    --info-color: #8950FC;
+    --gray-100: #F3F6F9;
+    --gray-200: #EBEDF3;
+    --gray-300: #E4E6EF;
+    --gray-400: #D1D3E0;
+    --gray-500: #B5B5C3;
+    --gray-600: #7E8299;
+    --gray-700: #5E6278;
+    --gray-800: #3F4254;
+    --gray-900: #181C32;
+
+    /* 3.8 الوصولية: ألوان تباين WCAG AA (نص عادي 4.5:1 على الأقل) */
+    --text-primary: #181C32;
+    --text-muted-aa: #5E6278;
+    --bg-body: #ffffff;
+
+    --border-radius: 12px;
+    --transition-speed: 0.3s;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+}
+
+/* Typography - unify font across the site */
+body,
+button,
+input,
+select,
+textarea,
+.btn,
+.form-control,
+.modal-title,
+.menu-link,
+.menu-text {
+    font-family: 'Cairo', sans-serif !important;
+}
+
+/* 3.8 الوصولية: تباين WCAG AA — نص أساسي وثانوي بتباين كافٍ */
+body {
+    color: var(--text-primary);
+    background-color: var(--bg-body);
+}
+.text-muted,
+.text-muted-aa {
+    color: var(--text-muted-aa) !important;
+}
+
+/* Card Improvements */
+.card {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-speed) ease;
+}
+
+.card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.card-custom {
+    border: none;
+    border-radius: var(--border-radius);
+}
+
+/* Table Improvements */
+.table {
+    border-radius: var(--border-radius);
+    overflow: hidden;
+}
+
+.table thead th {
+    background-color: var(--gray-100);
+    border-bottom: 2px solid var(--gray-200);
+    padding: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    color: var(--gray-700);
+}
+
+.table tbody tr {
+    transition: background-color var(--transition-speed) ease;
+}
+
+.table tbody tr:hover {
+    background-color: var(--gray-100);
+}
+
+.table td {
+    padding: 1rem;
+    vertical-align: middle;
+}
+
+/* ===== 3.5 الجداول: responsive مع data-label، وتوحيد أزرار الإجراءات ===== */
+/* استخدام: أضف للـ table-responsive: data-responsive="true" ولكل td: data-label="نص العمود" */
+@media (max-width: 768px) {
+    .table-responsive[data-responsive="true"] thead th { display: none; }
+    .table-responsive[data-responsive="true"] tbody td {
+        display: block;
+        text-align: right;
+        border-bottom: 1px solid var(--gray-200);
+    }
+    .table-responsive[data-responsive="true"] tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        float: right;
+        margin-left: 0.5rem;
+        color: var(--gray-600);
+    }
+}
+.table-actions .btn-icon {
+    border-radius: 8px;
+    transition: all var(--transition-speed) ease;
+}
+.table-pagination-wrapper .pagination { margin-bottom: 0; }
+
+/* Button Improvements */
+.btn {
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+/* Form Improvements */
+.form-control {
+    border-radius: 8px;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--gray-300);
+    transition: all var(--transition-speed) ease;
+}
+
+.form-control:focus {
+    border-color: var(--warning-color);
+    box-shadow: 0 0 0 3px rgba(54, 153, 255, 0.1);
+}
+
+/* ===== 3.8 الوصولية: focus-visible (لا يظهر عند النقر بالماوس، فقط عند التنقل بلوحة المفاتيح) ===== */
+.btn:focus-visible,
+.form-control:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: var(--gray-700);
+    margin-bottom: 0.5rem;
+}
+
+/* Badge/Label Improvements */
+.label {
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.label-light-primary {
+    background-color: rgba(46, 125, 50, 0.1);
+    color: var(--primary-color);
+}
+
+.label-light-success {
+    background-color: rgba(27, 197, 189, 0.1);
+    color: var(--success-color);
+}
+
+.label-light-warning {
+    background-color: rgba(255, 168, 0, 0.1);
+    color: var(--warning-color);
+}
+
+.label-light-danger {
+    background-color: rgba(246, 78, 96, 0.1);
+    color: var(--danger-color);
+}
+
+.label-light-info {
+    background-color: rgba(137, 80, 252, 0.1);
+    color: var(--info-color);
+}
+
+/* Modal Improvements */
+.modal-content {
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+    border-top-left-radius: var(--border-radius);
+    border-top-right-radius: var(--border-radius);
+    padding: 1.25rem;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    border-bottom-left-radius: var(--border-radius);
+    border-bottom-right-radius: var(--border-radius);
+    padding: 1rem 1.5rem;
+}
+
+/* Status Badge Animations */
+.label {
+    transition: all var(--transition-speed) ease;
+}
+
+.label:hover {
+    transform: scale(1.05);
+}
+
+/* Empty States */
+.empty-state {
+    padding: 3rem;
+    text-align: center;
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    color: var(--gray-400);
+    margin-bottom: 1.5rem;
+}
+
+.empty-state-text {
+    color: var(--gray-600);
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+/* Loading States */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    border-radius: var(--border-radius);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--gray-200);
+    border-top-color: var(--primary-color);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Improvements */
+@media (max-width: 768px) {
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 1rem;
+        border-radius: var(--border-radius);
+        box-shadow: var(--shadow-sm);
+    }
+
+    .table tbody td {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 1rem;
+        border-bottom: 1px solid var(--gray-200);
+    }
+
+    .table tbody td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--gray-700);
+    }
+}
+
+/* Accessibility Improvements */
+:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--gray-100);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gray-400);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gray-500);
+}
+
+/* Active link color */
+a:active {
+    color: #E5B674;
+}
+
+/* ========== صفحات الإعدادات (Settings) ========== */
+.settings-page {
+    padding: 0 0 2rem;
+}
+
+.settings-card {
+    border: none;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow var(--transition-speed) ease;
+}
+
+.settings-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.settings-card .card-header {
+    background: linear-gradient(135deg, var(--gray-100) 0%, #fff 100%);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 1.5rem 1.75rem;
+}
+
+.settings-card .card-header .card-icon-wrap {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-left: 1rem;
+    flex-shrink: 0;
+}
+
+.settings-card .card-header.card-header-primary .card-icon-wrap { background: rgba(46, 125, 50, 0.15); color: var(--primary-color); }
+.settings-card .card-header.card-header-info .card-icon-wrap { background: rgba(137, 80, 252, 0.15); color: var(--info-color); }
+.settings-card .card-header.card-header-success .card-icon-wrap { background: rgba(27, 197, 189, 0.15); color: var(--success-color); }
+
+.settings-card .card-title .card-label {
+    font-size: 1.25rem;
+    color: var(--gray-900);
+}
+
+.settings-card .card-title .text-muted {
+    font-size: 0.9rem;
+    margin-top: 0.25rem;
+}
+
+.settings-table {
+    margin: 0;
+}
+
+.settings-table thead th {
+    background: var(--gray-100);
+    color: var(--gray-700);
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 1rem 1.25rem;
+    border: none;
+    border-bottom: 2px solid var(--gray-200);
+}
+
+.settings-table tbody td {
+    padding: 1rem 1.25rem;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.settings-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.settings-table tbody tr:hover td {
+    background-color: rgba(46, 125, 50, 0.04);
+}
+
+.settings-table .td-id {
+    font-weight: 700;
+    color: var(--gray-600);
+    font-size: 0.95rem;
+}
+
+.settings-table .badge-permission,
+.settings-table .badge-role {
+    display: inline-block;
+    padding: 0.4rem 0.85rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    margin: 0.15rem;
+}
+
+.settings-table .badge-permission {
+    background: rgba(46, 125, 50, 0.12);
+    color: var(--primary-color);
+}
+
+.settings-table .badge-role {
+    background: rgba(27, 197, 189, 0.12);
+    color: var(--success-color);
+}
+
+.settings-table .badge-role-name {
+    background: rgba(137, 80, 252, 0.12);
+    color: var(--info-color);
+    padding: 0.4rem 0.85rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.settings-table .btn-actions .btn {
+    margin: 0 0.15rem;
+}
+
+.settings-empty {
+    padding: 3rem 2rem;
+    text-align: center;
+    background: var(--gray-100);
+    border-radius: var(--border-radius);
+    margin: 1rem 1.25rem;
+}
+
+.settings-empty .empty-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1.25rem;
+    border-radius: 50%;
+    background: var(--gray-200);
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.settings-empty .empty-text {
+    color: var(--gray-600);
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.settings-card .card-footer {
+    background: var(--gray-100);
+    border-top: 1px solid var(--gray-200);
+    padding: 1rem 1.25rem;
+}
+
+/* نماذج الإعدادات (إنشاء / تعديل) */
+.settings-form-card .card-header {
+    background: linear-gradient(135deg, var(--gray-100) 0%, #fff 100%);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.settings-form-card .card-body {
+    padding: 1.75rem;
+}
+
+.settings-form-card .form-control-solid {
+    border-radius: 8px;
+    border: 1px solid var(--gray-300);
+}
+
+.settings-form-card .input-icon input {
+    padding-right: 2.75rem;
+}
+
+.settings-form-card .card-footer {
+    background: var(--gray-100);
+    border-top: 1px solid var(--gray-200);
+    padding: 1.25rem 1.75rem;
+}
+
+.settings-form-card .checkbox-outline.checkbox-primary span {
+    border-radius: 6px;
+}
+
+/* صفحات تعديل الأدوار والمستخدمين */
+.bg-light-info {
+    background: rgba(137, 80, 252, 0.08);
+}
+
+.bg-light-primary {
+    background: rgba(54, 153, 255, 0.06);
+}
+
+.bg-light-success {
+    background: rgba(27, 197, 189, 0.08);
+}
+
+.user-role-card {
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.user-role-card:hover {
+    background: rgba(46, 125, 50, 0.15) !important;
+    border-color: rgba(46, 125, 50, 0.3);
+}
+
+.role-permission-card .card-header {
+    background: rgba(46, 125, 50, 0.06);
+    transition: background 0.2s ease;
+}
+
+.role-permission-card .card-header:hover {
+    background: rgba(46, 125, 50, 0.12);
+}
+
+.role-permission-card .collapse .card-body {
+    background: #fff;
+}
+
+/* قائمة الصلاحيات داخل البطاقات */
+.permission-list-body {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 1rem 1.5rem !important;
+}
+
+/* قائمة أنواع الطلبات وغيرها: ارتفاع أكبر للقائمة المنسدلة Select2 لظهور الخيارات بشكل أوضح مع التمرير */
+.select2-container--default .select2-results > .select2-results__options {
+    max-height: 400px !important;
+}
+
+/* مودال إضافة طلب جديد */
+.add-request-modal .modal-dialog {
+    max-width: 92%;
+}
+@media (min-width: 1200px) {
+    .add-request-modal .modal-dialog {
+        max-width: 1140px;
+    }
+}
+.add-request-modal .modal-content {
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+.add-request-modal .modal-header {
+    border-radius: 0.75rem 0.75rem 0 0;
+}
+.add-request-modal-body {
+    max-height: 70vh;
+    overflow-y: auto;
+}
+.add-request-modal .modal-footer .btn {
+    min-width: 120px;
+}
+
+/* قائمة نوع الطلب في نموذج الإضافة (صفحة + مودال) */
+.request-type-select-wrapper .select2-container {
+    width: 100% !important;
+}
+.request-type-select-wrapper .select2-selection__rendered {
+    white-space: normal;
+}
+.request-type-dropdown.select2-container--default .select2-results__options {
+    max-height: 400px !important;
+}
+
+/* قائمة نوع الطلب عند فتحها من المودال (مرفوعة إلى body لعدم القص) */
+.request-type-dropdown-modal {
+    z-index: 1060 !important;
+}
+.add-request-modal.show ~ .request-type-dropdown-modal,
+body .request-type-dropdown-modal {
+    z-index: 1060 !important;
+}
+
+.permission-item {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0;
+}
+
+.permission-item-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0;
+    cursor: pointer;
+    text-align: center;
+}
+
+.permission-item-text {
+    flex: 1;
+    min-width: 0;
+    font-weight: 600;
+    color: var(--gray-800);
+    word-break: break-word;
+    text-align: center;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
