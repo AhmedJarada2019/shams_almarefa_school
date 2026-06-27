@@ -174,7 +174,103 @@ git push -u origin main
 6. قم بتثبيت SSL
 7. قم بنشر المشروع
 
-### خيار D: استضافة Laravel متخصصة
+### خيار D: Hostinger مع النشر التلقائي (GitHub Actions)
+
+هذا الخيار يوفر مزامنة تلقائية بين GitHub و Hostinger. أي تغيير يتم دفعه إلى فرع `main` سيتم نشره تلقائياً على الاستضافة.
+
+#### الخطوة 1: إعداد Hostinger
+
+1. **تفعيل SSH على Hostinger:**
+   - سجل الدخول إلى لوحة تحكم Hostinger (hPanel)
+   - اذهب إلى SSH Access
+   - قم بتفعيل SSH إذا لم يكن مفعلاً
+   - احصل على:
+     - Host (مثلاً: `ssh.hostinger.com`)
+     - Port (عادة 21 أو 22)
+     - Username
+     - Password أو SSH Key
+
+2. **إنشاء SSH Key (اختياري لكن موصى به):**
+   ```bash
+   ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+   ```
+   - أضف المفتاح العام إلى Hostinger في SSH Access
+   - احتفظ بالمفتاح الخاص للإضافة إلى GitHub Secrets
+
+3. **إعداد قاعدة البيانات:**
+   - أنشئ قاعدة بيانات MySQL جديدة في hPanel
+   - احفظ بيانات الاتصال (اسم قاعدة البيانات، المستخدم، كلمة المرور)
+
+4. **رفع المشروع يدوياً لأول مرة:**
+   - استخدم File Manager أو FTP لرفع الملفات
+   - ارفع محتوى مجلد `public` إلى `public_html`
+   - ارفع باقي المجلدات خارج `public_html`
+   - أنشئ ملف `.env` باستخدام `.env.example`
+   - شغل الأوامر التالية عبر SSH:
+   ```bash
+   composer install --optimize-autoloader --no-dev
+   npm install
+   npm run build
+   php artisan key:generate
+   php artisan storage:link
+   php artisan migrate --force
+   php artisan config:cache
+   php artisan route:cache
+   php artisan view:cache
+   ```
+
+#### الخطوة 2: إعداد GitHub Actions
+
+1. **إضافة Secrets إلى GitHub:**
+   - اذهب إلى مستودع GitHub الخاص بك
+   - Settings > Secrets and variables > Actions
+   - أضف الأسرار التالية:
+   
+   | Secret Name | Description | Example |
+   |-------------|-------------|---------|
+   | `SSH_PRIVATE_KEY` | مفتاح SSH الخاص | محتوى ملف `~/.ssh/id_rsa` |
+   | `HOSTINGER_HOST` | عنوان Hostinger SSH | `ssh.hostinger.com` |
+   | `HOSTINGER_PORT` | منفذ SSH | `22` |
+   | `HOSTINGER_USER` | اسم المستخدم في Hostinger | `u123456789` |
+   | `HOSTINGER_PATH` | مسار المشروع على الاستضافة | `/home/u123456789/public_html` |
+
+2. **تفعيل GitHub Actions:**
+   - المشروع يحتوي بالفعل على ملف `.github/workflows/deploy.yml`
+   - هذا الملف سيقوم تلقائياً بالنشر عند كل دفع إلى فرع `main`
+
+#### الخطوة 3: النشر التلقائي
+
+الآن عند أي تغيير تقوم به محلياً:
+
+1. قم بالتغييرات المطلوبة
+2. ارسلها إلى GitHub:
+   ```bash
+   git add .
+   git commit -m "وصف التغيير"
+   git push origin main
+   ```
+3. GitHub Actions سيقوم تلقائياً:
+   - تثبيت التبعيات
+   - بناء الأصول (assets)
+   - رفع الملفات إلى Hostinger
+   - تشغيل الترحيلات
+   - تحديث الـ cache
+
+يمكنك مراقبة عملية النشر في:
+- GitHub: Actions tab في المستودع
+- Hostinger: سجلات الخادم
+
+#### الخطوة 4: النشر اليدوي (اختياري)
+
+إذا كنت تفضل النشر يدوياً، يمكنك استخدام سكريبت `deploy.sh`:
+
+```bash
+# عدل إعدادات الاستضافة في deploy.sh أولاً
+chmod +x deploy.sh
+./deploy.sh
+```
+
+### خيار E: استضافة Laravel متخصصة
 
 - Laravel Vapor (Serverless)
 - Laravel Forge (مع أي استضافة)
